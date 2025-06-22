@@ -29,5 +29,5 @@ table thead tr th {
 }
 
 table tbody tr td {
-  @apply p-2 border-1 border-b-gray-400 border-t-0 border-l-o border-r-0 bg-blue-200;
+  @apply p-2 border-1 border-b-gray-400 border-t-0 border-l-0 border-r-0 bg-blue-200;
 }

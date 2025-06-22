@@ -16,7 +16,7 @@ export default function Crud () {
     const [name, setName]= useState('');
     const [price, setPrice]= useState(0);
     const [products, setProducts] = useState<ProductInterface[]>([]);
-    const [id , setId] = useState(0);
+    const [id, setId] = useState<number | null>(null); // แนะนำใช้แบบนี้
 
     useEffect(() => {
         fetchData();
@@ -38,14 +38,13 @@ export default function Crud () {
             name: name,
             price: price
         }
-        if (id === 0 ){
+        if (id === null) {
             const url = '/api/product/create';
-            await axios.post(url,payload)
-        } else {
+            await axios.post(url, payload);
+          } else {
             const url = '/api/product/update/' + id;
-            await axios.put(url,payload);
-            setId(0);
-        }
+            await axios.put(url, payload);
+          }
 
         setName('');
         setId(0);

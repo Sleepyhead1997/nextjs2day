@@ -5,9 +5,9 @@ const prisma = new PrismaClient();
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
-  const id = parseInt(params.id);
+  const id = parseInt(context.params.id); // ✅ ใช้ context.params.id
 
   try {
     await prisma.product.delete({
