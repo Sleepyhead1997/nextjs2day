@@ -4,17 +4,17 @@ import { PrismaClient } from "@/generated/prisma";
 const prisma = new PrismaClient
 
 export async function PUT(req:NextRequest, {params}:{
-    params: {
+    params: Promise<{
         id:string
-    }
+    }>
 } ){
     try {
-      const id = parseInt(params.id);
+      const {id} = await params;
       const {name, price} = await req.json();
 
       await prisma.product.update({
         where:{
-            id: id
+            id: parseInt(id)
         },
         data: {
             name: name,

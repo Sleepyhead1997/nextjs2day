@@ -3,13 +3,16 @@ import { PrismaClient } from "@/generated/prisma";
 
 const prisma = new PrismaClient
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
-    const id = parseInt(params.id);
-  
+export async function DELETE(req: NextRequest, { params }: {
+    params: Promise<{
+        id:string
+    }>
+}) {
     try {
+    const {id} = await params;
       await prisma.product.delete({
         where: { 
-            id: id
+            id: parseInt(id)
          },
       });
   
@@ -19,5 +22,5 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
       return NextResponse.json({ message: 'Error', error: String(err) }, { status: 500 });
     }
   }
-  
+ 
 
