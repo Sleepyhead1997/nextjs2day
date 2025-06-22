@@ -71,7 +71,7 @@ export default function Crud () {
     
         if (result.isConfirmed) {
             try {
-                const response = await axios.delete(`/api/product/delete/${id}`);
+                const response = await axios.delete(`/api/product/delete/` + id);
                 if (response.status === 200) {
                     Swal.fire({
                         title: 'สำเร็จ',
